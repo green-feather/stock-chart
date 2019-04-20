@@ -1,6 +1,36 @@
-# Project Name
+# Green Feather Stock Chart
 
-> Project description
+> This projects creates the infrastructure for storing 5 price graphs for 10 million unique stock options
+
+## CRUD API
+  
+  ### 1. Make a new stock option/company - (CREATE)
+
+  ```sh
+  POST - /stocks/:stockID
+  ```
+
+  ### 2. Show info about all stocks & one stock - (READ)
+
+  ```sh
+  GET - /stocks
+  ```
+  
+  ```sh
+  GET - /stocks/:stockID
+  ```
+
+  ### 3. Update info about one stock - (UPDATE)
+  
+  ```sh
+  PATCH - /stocks/:stockID
+  ```
+  
+  ### 3. Delete info about one stock - (DELETE)
+  
+  ```sh
+  DELETE - /stocks/:stockID
+  ```
 
 ## Related Projects
 
