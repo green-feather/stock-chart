@@ -5,7 +5,7 @@ const { bar } = require('../progressBar');
 const { generateInBetween, generateTags, numberToPaddedString }
   = require('../generationMethods');
 
-const ws = fs.createWriteStream('StockInfo.csv');
+const ws = fs.createWriteStream('csv/StockInfo.csv');
 
 // Generate stock chart data based on schema
 const generateData = (index, numberOfEntries) => {
@@ -21,12 +21,12 @@ function writeTenMillionTimes(writer, encoding) {
                'relatedTags__relatedTags2,' +
                'relatedTags__relatedTags3,' +
                'relatedTags__relatedTags4,relatedTags__relatedTags5,' +
-               'noOfOwners,recommendationPercent,\n');
+               'noOfOwners,recommendationPercent\n');
   write();
   function write() {
     let ok = true;
     do {
-      let data = generateData(idx, i) + ',\n';
+      let data = generateData(idx, i) + '\n';
       i--;
       //Update progress bar
       bar.tick();
@@ -54,3 +54,4 @@ function writeTenMillionTimes(writer, encoding) {
   }
 }
 writeTenMillionTimes(ws, 'utf-8')
+
