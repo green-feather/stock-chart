@@ -12,10 +12,14 @@ module.exports = {
 
   // Creates random data points that are 5-25 points above or below previous data point
   generateDataPoints: (init) => {
-    return Math.abs(module.exports.generateInBetween(
+    let array = [];
+    for (var i = 0; i < 10; i += 1) {
+      array.push(Math.abs(module.exports.generateInBetween(
       init - module.exports.generateInBetween(5, 25, 'interger'),
-      init + module.exports.generateInBetween(5, 25, 'interger')).toFixed(2)
-    );
+      init + module.exports.generateInBetween(5, 25, 'interger')).toFixed(2)));
+    }
+    array = array.join('|');
+    return array;
   },
 
   // Creates a random number between min & max
@@ -45,6 +49,6 @@ module.exports = {
   
   // Creates a sring number padded with zeros up to ten digits
   numberToPaddedString: (number) => {
-    return number.toString().padStart(10, '0');
+    return number.toString().padStart(9, '0');
   }
 }
