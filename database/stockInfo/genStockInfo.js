@@ -2,7 +2,8 @@ const fs = require('fs');
 const faker = require('faker');
 const { companyData } = require('../companyData');
 const { bar } = require('../progressBar');
-const { generateInBetween, generateTags, numberToPaddedString }
+const { generateInBetween, generateTags, 
+        numberToPaddedString, generateDataPoints }
   = require('../generationMethods');
 
 const ws = fs.createWriteStream('csv/StockInfo.csv');
@@ -10,18 +11,25 @@ const ws = fs.createWriteStream('csv/StockInfo.csv');
 // Generate stock chart data based on schema
 const generateData = (index, numberOfEntries) => {
   // eslint-disable-next-line max-len
-  return `${numberToPaddedString(numberOfEntries)},${companyData[index].company},${generateTags(generateInBetween(2, 5, 'interger'))},${faker.random.number()},${generateInBetween(30, 90, 'interger')}`
+  return `${numberToPaddedString(numberOfEntries)},${companyData[index].company},` +
+  `${numberToPaddedString(numberOfEntries)},` +
+  `${generateInBetween(90, 200).toFixed(2)},` + 
+  `${generateInBetween(1, 4).toFixed(2)},` + 
+  `${generateDataPoints(generateInBetween(50, 200).toFixed(2))},` +
+  `${generateDataPoints(generateInBetween(50, 200).toFixed(2))},` +
+  `${generateDataPoints(generateInBetween(50, 200).toFixed(2))},` +
+  `${generateDataPoints(generateInBetween(50, 200).toFixed(2))},` +
+  `${generateDataPoints(generateInBetween(50, 200).toFixed(2))},` +
+  `${generateDataPoints(generateInBetween(50, 200).toFixed(2))},` +
+  `${generateTags(generateInBetween(2, 5, 'interger'))},` +
+  `${faker.random.number()},` +
+  `${generateInBetween(30, 90, 'interger')}`
 };
 
 // Write 10M data stringified objects to csv file using stream & drain
 function writeTenMillionTimes(writer, encoding) {
   let i = 10000000;
   let idx = 0;
-  writer.write('id,stockCompany,relatedTags__relatedTags1,' +
-               'relatedTags__relatedTags2,' +
-               'relatedTags__relatedTags3,' +
-               'relatedTags__relatedTags4,relatedTags__relatedTags5,' +
-               'noOfOwners,recommendationPercent\n');
   write();
   function write() {
     let ok = true;
