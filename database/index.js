@@ -1,8 +1,9 @@
-const mongoose = require('mongoose');
+const { Client } = require('pg');
 
-const mongoUri = 'mongodb://localhost/stock-chart';
+const client = new Client({
+  user: 'tlindow',
+  database: 'stock-chart'
+})
+client.connect();
 
-mongoose.connect(mongoUri);
-const db = mongoose.connection;
-
-module.exports = db;
+module.exports = client;
