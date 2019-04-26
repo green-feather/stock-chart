@@ -11,8 +11,9 @@ const ws = fs.createWriteStream('csv/StockInfo.csv');
 // Generate stock chart data based on schema
 const generateData = (index, numberOfEntries) => {
   // eslint-disable-next-line max-len
-  return `${numberToPaddedString(numberOfEntries)},${companyData[index].company},` +
-  `${numberToPaddedString(numberOfEntries)},` +
+  return `${numberToPaddedString(numberOfEntries)},` +
+  `${companyData[index].company}${numberToPaddedString(numberOfEntries)},` +
+  `${companyData[index].ticker}${numberToPaddedString(numberOfEntries)},` +
   `${generateInBetween(90, 200).toFixed(2)},` + 
   `${generateInBetween(1, 4).toFixed(2)},` + 
   `${generateDataPoints(generateInBetween(50, 200).toFixed(2))},` +
