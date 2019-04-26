@@ -1,8 +1,14 @@
+-- Example queries
+---- Get one by id
+select * from stockInfo where id=000000001;
+select * from stockInfo where stockId='CGC000000001';
+select * from stockInfo where stockCompany='Canopy Growth000000001';
+
 -- For postgresql schema
 CREATE TABLE stockInfo (
   id varchar(9),
-  stockCompany varchar(40),
-  stockId varchar(9),
+  stockCompany varchar(49),
+  stockId varchar(14),
   averageStock numeric(5,2),
   changePercent numeric(4,2),
   prices_day varchar(70),
@@ -21,13 +27,13 @@ CREATE TABLE stockInfo (
 );
 
 -- For copying into postgresql database
-COPY stockinfo from '/Users/tlindow/repos/hack-reactor/stock-chart/database/csv/StockInfo.csv';
+COPY stockinfo from '/Users/tlindow/repos/hack-reactor/stock-chart/database/csv/StockInfo.csv' (DELIMITER ',');
 
 -- For cassandra nosql schema
 create table stockinfo (
   id int PRIMARY KEY,
   stockCompany text,
-  stockId int,
+  stockId text,
   averageStock float,
   changePercent float,
   prices_day text,
