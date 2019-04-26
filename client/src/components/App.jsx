@@ -25,7 +25,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const { stockId } = this.props.match ? this.props.match.params : { stockId: null };
-    API.get((stockId && `/api/${stockId}`) || `/api/TSLA`)
+    API.get((stockId && `/api/${stockId}`) || `/api/PLUG000000001`)
     .then((response) => {
       this.setState({
         stockInfo: response.data[0].stockInfo,
