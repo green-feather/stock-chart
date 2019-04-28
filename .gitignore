@@ -26,3 +26,6 @@ build/
 # Examples of code from Hack Reactor
 example/
 
+# API Keys
+*.pem
+.env

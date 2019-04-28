@@ -1,0 +1,35 @@
+config:
+  target: 'http://localhost:4000'
+  phases:
+    - duration: 30
+      arrivalRate: 5
+      name: "Warm up"
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 100
+      name: "Ramp up to 100rps"
+    - duration: 60
+      arrivalRate: 100
+      rampTo: 500
+      name: "Ramp up to 500rps"
+    - duration: 60
+      arrivalRate: 500
+      rampTo: 1000  
+      name: "Ramp up to 1000rps"
+    - duration: 60
+      arrivalRate: 1000
+      name: "Sustain at 1000rps"
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+  payload:
+    path: "database/csv/StockIds.csv"
+    fields:
+      - "id"
+scenarios:
+  - flow:
+    - patch:
+        url: "/api/{{ id }}"
+    - get:
+        url: "/api/{{ id }}"
+
